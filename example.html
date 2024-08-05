@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <main>
+    {!<div>{_test_}</div>!}
+    {!<div>{_test:raw_}</div>!}
+  </main>
+  <script>
+    const a = "{_test_}";
+    const b = {_test:raw_};
+    //{!
+      const c = "{_test:raw_}";
+    //!}
+  </script>
+</body>
+</html>

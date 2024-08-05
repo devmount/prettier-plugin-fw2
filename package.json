@@ -1,0 +1,28 @@
+{
+  "name": "prettier-plugin-fw2",
+  "version": "0.0.1",
+  "description": "Prettier plugin for the FW2 framework",
+  "author": {
+    "name": "Andreas Müller",
+    "email": "mail@devmount.de"
+  },
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "prettier-plugin-fw2.js"
+  ],
+  "main": "prettier-plugin-fw2.js",
+  "scripts": {
+    "example": "npx prettier --single-quote --no-bracket-spacing --plugin prettier-plugin-fw2.js example.html"
+  },
+  "exports": "./prettier-plugin-fw2.js",
+  "keywords": [
+    "html",
+    "prettier",
+    "plugin"
+  ],
+  "dependencies": {
+    "node-html-parser": "^6.1.13",
+    "prettier": "^3.3.3"
+  }
+}
