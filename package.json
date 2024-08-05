@@ -13,7 +13,7 @@
   ],
   "main": "prettier-plugin-fw2.js",
   "scripts": {
-    "example": "npx prettier --single-quote --no-bracket-spacing --plugin prettier-plugin-fw2.js example.html"
+    "example": "npx prettier --single-quote --no-bracket-spacing --html-whitespace-sensitivity=ignore --plugin prettier-plugin-fw2.js example.html"
   },
   "exports": "./prettier-plugin-fw2.js",
   "keywords": [
