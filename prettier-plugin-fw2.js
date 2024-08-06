@@ -4,7 +4,7 @@ import {
 } from "prettier/plugins/html";
 import { doc } from "prettier";
 
-const { indent, concat, hardline } = doc.builders;
+const { hardline } = doc.builders;
 
 export const languages = [
   {
@@ -24,6 +24,20 @@ export const parsers = {
   html: htmlParser,
 };
 
+/**
+ * Check if a conditional opening tag `{!` was printed inline
+ * Returns the position of the first match or -1
+ */
+const inlineOpeningConditional = (printed) => {
+  if (typeof printed === 'object' && printed.parts && Array.isArray(printed.parts)) {
+    const matchIndex = printed.parts.findIndex((v) => v === '{!');
+    if (matchIndex > -1 && printed.parts[matchIndex-1]?.type === 'line') {
+      return matchIndex;
+    }
+  }
+  return -1;
+};
+
 const htmlPrinter = {
   ...prettierHtmlPrinters.html,
   print(path, options, print) {
@@ -37,15 +51,16 @@ const htmlPrinter = {
     // Pass element along to the default printer
     const printed = prettierHtmlPrinters.html.print(path, options, print);
 
-    if (node.type === 'text' && (node.value.includes('{!') || node.value.includes('!}'))) {
-      console.log(printed);
-      // return node.value;
-    }
+    // For DEBUGGING
+    // if (node.type === 'text' && (node.value.includes('{!') || node.value.includes('!}'))) {
+    //   console.log(printed, node.type);
+    // }
 
-    // Move an opening conditional marker from the end of a line to a new line
+    // Move an inline conditional marker to a new line
     // Example AST: { type: 'fill', parts: [ '!}', { type: 'line' }, '{!' ] }
-    if (typeof printed === 'object' && printed.parts && printed.parts.at(-2).type === 'line' && printed.parts.at(-1) === '{!') {
-      printed.parts.splice(-2, 2, hardline, printed.parts[printed.parts.length-1]);
+    const pos = inlineOpeningConditional(printed);
+    if (pos > -1) {
+      printed.parts.splice(pos-1, 2, hardline, printed.parts[pos]);
     }
 
     return printed;
