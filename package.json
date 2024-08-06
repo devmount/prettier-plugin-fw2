@@ -22,7 +22,17 @@
     "plugin"
   ],
   "dependencies": {
-    "node-html-parser": "^6.1.13",
     "prettier": "^3.3.3"
+  },
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devmount/prettier-plugin-fw2.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=20.0.0"
   }
 }

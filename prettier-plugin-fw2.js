@@ -57,7 +57,7 @@ const htmlPrinter = {
     // }
 
     // Move an inline conditional marker to a new line
-    // Example AST: { type: 'fill', parts: [ '!}', { type: 'line' }, '{!' ] }
+    // Example print: { type: 'fill', parts: [ '!}', { type: 'line' }, '{!' ] }
     const pos = inlineOpeningConditional(printed);
     if (pos > -1) {
       printed.parts.splice(pos-1, 2, hardline, printed.parts[pos]);
