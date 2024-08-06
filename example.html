@@ -4,7 +4,7 @@
 <body>
   <main>
     {%reference%}-ID
-    {! {_tag_} <span>Tag</span>!}
+    {! {_tag:raw_} <span>Tag</span>!}
     {!<div>
         {!<i title="{_title:raw_}"></i>!}
       </div>!}
@@ -14,5 +14,11 @@
       {!{_required_}required!}
     ></div>
   </main>
+  <script>
+    const a = {_test:raw_};
+    {!
+      if (a) console.log({_show_});
+    !}
+  </script>
 </body>
 </html>
